@@ -23,14 +23,18 @@ body{
 }
 /* ---------- smoky background ---------- */
 .smoke{position:fixed; inset:0; z-index:0; overflow:hidden; pointer-events:none}
-.smoke i{position:absolute; border-radius:50%; filter:blur(70px); opacity:.55; will-change:transform}
-.smoke i:nth-child(1){width:70vmax;height:70vmax;left:-25vmax;top:-30vmax;background:radial-gradient(circle,#233349 0%,transparent 65%);animation:d1 26s ease-in-out infinite alternate}
-.smoke i:nth-child(2){width:60vmax;height:60vmax;right:-22vmax;bottom:-26vmax;background:radial-gradient(circle,#0F4561 0%,transparent 65%);animation:d2 32s ease-in-out infinite alternate}
-.smoke i:nth-child(3){width:48vmax;height:48vmax;left:30%;top:35%;background:radial-gradient(circle,#2B2350 0%,transparent 65%);opacity:.38;animation:d3 38s ease-in-out infinite alternate}
-@keyframes d1{to{transform:translate(18vmax,12vmax) scale(1.15)}}
-@keyframes d2{to{transform:translate(-16vmax,-10vmax) scale(1.2)}}
-@keyframes d3{to{transform:translate(-12vmax,14vmax) scale(.9)}}
-.grain{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.07; mix-blend-mode:overlay;
+.smoke i{position:absolute; border-radius:50%; filter:blur(55px); will-change:transform}
+.smoke i:nth-child(1){width:80vmax;height:80vmax;left:-28vmax;top:-34vmax;background:radial-gradient(circle,rgba(58,86,125,.95) 0%,transparent 62%);animation:d1 22s ease-in-out infinite alternate}
+.smoke i:nth-child(2){width:70vmax;height:70vmax;right:-26vmax;bottom:-30vmax;background:radial-gradient(circle,rgba(16,112,150,.9) 0%,transparent 62%);animation:d2 28s ease-in-out infinite alternate}
+.smoke i:nth-child(3){width:56vmax;height:56vmax;left:25%;top:28%;background:radial-gradient(circle,rgba(84,58,160,.7) 0%,transparent 62%);animation:d3 34s ease-in-out infinite alternate}
+.smoke i:nth-child(4){width:110vmax;height:34vmax;left:-20vmax;top:12%;background:radial-gradient(ellipse,rgba(190,212,238,.30) 0%,transparent 65%);animation:d4 30s ease-in-out infinite alternate}
+.smoke i:nth-child(5){width:100vmax;height:30vmax;right:-25vmax;bottom:8%;background:radial-gradient(ellipse,rgba(170,200,230,.26) 0%,transparent 65%);animation:d5 36s ease-in-out infinite alternate}
+@keyframes d1{to{transform:translate(24vmax,16vmax) scale(1.2)}}
+@keyframes d2{to{transform:translate(-22vmax,-14vmax) scale(1.25)}}
+@keyframes d3{to{transform:translate(-16vmax,18vmax) scale(.85) rotate(40deg)}}
+@keyframes d4{to{transform:translate(30vmax,10vmax) rotate(8deg) scale(1.15)}}
+@keyframes d5{to{transform:translate(-34vmax,-8vmax) rotate(-10deg) scale(1.1)}}
+.grain{position:fixed; inset:0; z-index:0; pointer-events:none; opacity:.09; mix-blend-mode:overlay;
   background-image:url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 .vignette{position:fixed; inset:0; z-index:0; pointer-events:none; background:radial-gradient(120% 90% at 50% 40%,transparent 40%,rgba(0,0,0,.65) 100%)}
 
@@ -50,11 +54,17 @@ header{width:100%; max-width:1040px; margin:0 auto; padding:20px 22px; display:f
 
 main{flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:8px 20px 30px; gap:22px}
 .card{
-  width:100%; max-width:450px; padding:36px 28px 28px; text-align:center; border-radius:26px;
-  background:linear-gradient(180deg,rgba(255,255,255,.055),rgba(255,255,255,.015)), var(--glass);
-  border:1px solid var(--line); backdrop-filter:blur(22px) saturate(140%); -webkit-backdrop-filter:blur(22px) saturate(140%);
-  box-shadow:0 50px 120px -30px #000, 0 20px 50px -20px rgba(0,0,0,.8), inset 0 1px 0 rgba(255,255,255,.1), 0 0 90px -40px var(--blue);
+  position:relative; overflow:hidden; width:100%; max-width:450px; padding:36px 28px 28px; text-align:center; border-radius:28px;
+  background:linear-gradient(135deg,rgba(255,255,255,.16) 0%,rgba(255,255,255,.04) 38%,rgba(255,255,255,.02) 62%,rgba(255,255,255,.09) 100%), rgba(12,16,24,.40);
+  border:1px solid rgba(255,255,255,.18);
+  backdrop-filter:blur(36px) saturate(180%) brightness(1.06); -webkit-backdrop-filter:blur(36px) saturate(180%) brightness(1.06);
+  box-shadow:0 60px 130px -30px #000, 0 24px 60px -24px rgba(0,0,0,.85), inset 0 1.5px 0 rgba(255,255,255,.28), inset 0 -1px 0 rgba(255,255,255,.05), 0 0 110px -36px var(--blue);
 }
+.card::before{content:"";position:absolute;inset:-40% -20% auto -20%;height:70%;pointer-events:none;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.13) 48%,transparent 62%);transform:rotate(-8deg)}
+.card::after{content:"";position:absolute;left:12%;right:12%;top:0;height:1px;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.7),transparent)}
+.card>*{position:relative;z-index:1}
 .timer{position:relative;width:184px;height:184px;margin:0 auto 24px}
 .timer .ring{width:184px;height:184px;transform:rotate(-90deg);filter:drop-shadow(0 0 10px rgba(76,194,255,.45))}
 .timer .track{stroke:rgba(255,255,255,.07)}
@@ -87,10 +97,13 @@ h1{font-size:25px;line-height:1.25;margin:0 0 8px;letter-spacing:-.2px}
 .steps li.ok i{background:var(--ok);border-color:var(--ok);animation:none}
 .steps li.ok i svg{opacity:1}
 @keyframes spin{to{transform:rotate(360deg)}}
-.btn{display:block;width:100%;padding:15px 16px;border:0;border-radius:14px;cursor:pointer;text-decoration:none;font:inherit;font-weight:700;color:#04121C;
-  background:linear-gradient(135deg,#6AD0FF,#8D9BFF);box-shadow:0 14px 34px -12px rgba(76,194,255,.7),inset 0 1px 0 rgba(255,255,255,.45);transition:transform .15s,filter .15s}
-.btn:hover{filter:brightness(1.08)} .btn:active{transform:scale(.98)}
-.btn.ghost{margin-top:10px;font-weight:600;color:var(--ink);background:rgba(255,255,255,.04);box-shadow:none;border:1px solid var(--line)}
+.btn{display:block;width:100%;padding:15px 16px;border-radius:15px;cursor:pointer;text-decoration:none;text-align:center;font:inherit;font-weight:700;color:#EAF7FF;
+  background:linear-gradient(180deg,rgba(120,205,255,.34),rgba(110,130,255,.20));border:1px solid rgba(170,225,255,.45);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  box-shadow:0 14px 34px -12px rgba(76,194,255,.65),inset 0 1px 0 rgba(255,255,255,.4);transition:transform .15s,filter .15s,opacity .3s}
+.btn:hover{filter:brightness(1.15)} .btn:active{transform:scale(.98)}
+.btn.ghost{margin-top:10px;font-weight:600;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.18);box-shadow:inset 0 1px 0 rgba(255,255,255,.18)}
+.btn[aria-disabled="true"],.btn:disabled{opacity:.35;cursor:not-allowed;pointer-events:none;filter:saturate(.3)}
 .note{margin:16px 0 0;font-size:12.5px;color:var(--dim)}
 .hint{margin:14px 0 0;font-size:13px;color:var(--blue)}
 .trust{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 22px;max-width:450px;color:var(--mute);font-size:13px}
@@ -98,7 +111,7 @@ h1{font-size:25px;line-height:1.25;margin:0 0 8px;letter-spacing:-.2px}
 .trust svg{width:15px;height:15px;stroke:var(--ok);stroke-width:2.4;fill:none;stroke-linecap:round;stroke-linejoin:round}
 footer{padding:18px 20px 24px;text-align:center;font-size:12.5px;color:var(--dim)}
 
-#view[data-state="gate"] .v-run{display:none}
+#view[data-state="run"] .v-run{display:none}
 #view[data-state="run"] .v-gate,#view[data-state="done"] .v-gate{display:none}
 #view.err .timer,#view.err .steps,#view.err .chip,#view.err .btn,#view.err .note{display:none}
 #view.err h1{color:var(--err)}
@@ -107,7 +120,7 @@ footer{padding:18px 20px 24px;text-align:center;font-size:12.5px;color:var(--dim
 </style>
 </head>
 <body>
-<div class="smoke" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="smoke" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
 <div class="grain" aria-hidden="true"></div>
 <div class="vignette" aria-hidden="true"></div>
 
@@ -132,13 +145,12 @@ footer{padding:18px 20px 24px;text-align:center;font-size:12.5px;color:var(--dim
         <circle class="bar" cx="92" cy="92" r="88"/>
       </svg>
       <div class="pulse"></div>
-      <svg class="icon v-gate" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8l-5-5Z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg>
       <div class="num v-run" id="num">5</div>
       <svg class="plane" viewBox="0 0 24 24" aria-hidden="true"><path d="M21.9 3.3 2.7 10.7c-1 .4-1 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.4.8.9.8s.7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.7-.8l3-14.3c.3-1.2-.4-1.8-1.3-1.5Z"/></svg>
     </div>
 
-    <h1 id="title">Your file is ready</h1>
-    <p class="sub" id="sub">Continue to Telegram to receive it.</p>
+    <h1 id="title">Preparing your file…</h1>
+    <p class="sub" id="sub">You'll be taken to Telegram in a moment.</p>
     <div class="chip"><svg viewBox="0 0 24 24"><path d="M21.9 3.3 2.7 10.7c-1 .4-1 1.3-.2 1.6l4.9 1.5 1.9 5.8c.2.6.4.8.9.8s.7-.2 1-.5l2.4-2.3 4.9 3.6c.9.5 1.5.2 1.7-.8l3-14.3c.3-1.2-.4-1.8-1.3-1.5Z"/></svg><span id="botname"></span></div>
 
     <ul class="steps v-run" id="steps">
@@ -146,12 +158,10 @@ footer{padding:18px 20px 24px;text-align:center;font-size:12.5px;color:var(--dim
       <li id="s2"><i><svg viewBox="0 0 12 12"><path d="m2 6.5 2.5 2.5L10 3.5"/></svg></i>Locating your file</li>
       <li id="s3"><i><svg viewBox="0 0 12 12"><path d="m2 6.5 2.5 2.5L10 3.5"/></svg></i>Opening Telegram</li>
     </ul>
-
-    <button class="btn v-gate" id="start" type="button">Get my file</button>
-    <a class="btn v-run" id="open" href="#">Open in Telegram now</a>
-    <button class="btn ghost" id="copy" type="button">Copy link</button>
+    <a class="btn v-run" id="open" href="#" aria-disabled="true">Open in Telegram</a>
+    <button class="btn ghost" id="copy" type="button" disabled>Copy link</button>
     <p class="hint v-run" id="hint" hidden>Tap anywhere on the screen to turn the sound on.</p>
-    <p class="note v-run" id="note">Telegram didn't open? Tap "Open in Telegram now".</p>
+    <p class="note v-run" id="note">Both buttons unlock when the countdown ends.</p>
   </section>
 
   <div class="trust">
@@ -175,7 +185,7 @@ footer{padding:18px 20px 24px;text-align:center;font-size:12.5px;color:var(--dim
     DELAY_SECONDS: 5,         // countdown 5 -> 0
     PAYLOAD_PARAM: "start",   // "start" or "startgroup"
     SOUND: true,              // tick sound on by default
-    REQUIRE_TAP: true         // true = show "Get my file" button first (guarantees sound works)
+    AUTO_OPEN: true           // open Telegram automatically when the countdown ends
   };
   /* ================================== */
 
@@ -201,7 +211,6 @@ footer{padding:18px 20px 24px;text-align:center;font-size:12.5px;color:var(--dim
     view.classList.add("err");
     $("title").textContent = "This link isn't valid";
     $("sub").textContent = text;
-    $("start").hidden = true;
     document.title = "Invalid link";
   }
   if (!BOT_RE.test(bot)) return fail("The bot name is missing or incorrect. Ask whoever sent it for a new link.");
@@ -281,7 +290,7 @@ footer{padding:18px 20px 24px;text-align:center;font-size:12.5px;color:var(--dim
       if (!left) location.replace(web);        // fall back to t.me
     }, 1400);
   }
-  $("open").addEventListener("click", function (e) { e.preventDefault(); launched = false; launch(); });
+  $("open").addEventListener("click", function (e) { e.preventDefault(); if (this.getAttribute("aria-disabled") === "true") return; launched = false; launch(); });
 
   $("copy").addEventListener("click", function () {
     var b = this, say = function (t) { b.textContent = t; setTimeout(function () { b.textContent = "Copy link"; }, 1800); };
@@ -298,6 +307,12 @@ footer{padding:18px 20px 24px;text-align:center;font-size:12.5px;color:var(--dim
     num.textContent = n;
     num.classList.remove("pop"); void num.offsetWidth; num.classList.add("pop");
     timer.classList.remove("tick"); void timer.offsetWidth; timer.classList.add("tick");
+  }
+
+  function enableButtons() {
+    $("open").removeAttribute("aria-disabled");
+    $("copy").disabled = false;
+    $("note").textContent = "Telegram didn't open automatically? Tap Open in Telegram.";
   }
 
   function begin() {
@@ -321,13 +336,12 @@ footer{padding:18px 20px 24px;text-align:center;font-size:12.5px;color:var(--dim
         timer.classList.add("done"); view.dataset.state = "done";
         $("title").textContent = "Opening Telegram…";
         $("hint").hidden = true;
-        doneSound(); launch();
+        doneSound(); enableButtons(); if (CONFIG.AUTO_OPEN) launch();
       }, 450);
     }, 1000);
   }
 
-  if (CONFIG.REQUIRE_TAP) $("start").addEventListener("click", begin);
-  else { view.dataset.state = "run"; begin(); }
+  begin();
 })();
 </script>
 </body>
